@@ -1,0 +1,23 @@
+{% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}
+{% include head.html %}
+<body {% if page.body_id %} id="{{ page.body_id }}" {% endif %}>
+	<div class="all">
+		<section class="sidebar align-center">
+			<header>
+				{% include header.html %}
+			</header>
+		</section>
+		<section class="content">
+			<div class="wrapper">
+				{{ content | expand_urls: root_url }}
+			</div>
+		</section>
+		<footer class="align-center">
+			{% include footer.html %}
+		</footer>
+	</div>
+<script src="{{ root_url }}/javascripts/site.js"></script>
+<script> updateSizes(); </script>
+{% include after_footer.html %}
+</body>
+</html>

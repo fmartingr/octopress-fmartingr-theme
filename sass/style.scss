@@ -1,0 +1,416 @@
+
+/*
+ * Z:
+ 100: 	Sidebar == TOP ==
+ 50:	Content
+
+/* =Variables
+-----------------------------------------------------------------------------*/
+$sidebarWidth: 250px;
+$sidebarMinWidth: 250px;
+
+$avatarSizeDesktop: 180px;
+$avatarSizeTablet: 80px;
+$avatarSizeMobile: 70px;
+
+$socialButtonSize: 30px;
+
+
+/* =Colors
+-----------------------------------------------------------------------------*/
+// Primary
+$color1: #0B5FA5;
+$color2: #25547B;
+$color3: #043C6B;
+$color4: #3F8FD2;
+$color5: #66A1D2;
+
+// Complementary
+$color6: #FF9400;
+$color7: #BF8330;
+$color8: #A66000;
+$color9: #FFAE40;
+$color10: #FFC473;
+
+// Backgrounds
+$sidebarBackground: $color5;
+$contentBackground: white; //#66A1D2;
+
+/* =Mixins
+-----------------------------------------------------------------------------*/
+
+@mixin gradient($colorFrom, $colorTo) {
+	background: $colorFrom; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  $colorFrom 0%, $colorTo 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,$colorFrom), color-stop(100%,$colorTo)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover,  $colorFrom 0%,$colorTo 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover,  $colorFrom 0%,$colorTo 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover,  $colorFrom 0%,$colorTo 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center,  $colorFrom 0%,$colorTo 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f8fd2', endColorstr='#25547b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+/* =Custom responsive
+-----------------------------------------------------------------------------*/
+/* Landspace tablet and Large desktop */
+@media (min-width: 980px) { 
+	html, body, .all {
+		height: 100%;
+		max-height: 100%;
+	}
+	
+	hr {
+		width: 6*50px;
+	}
+
+	.all {
+		.sidebar {
+			box-shadow: 2px 0 10px black;
+			left: 0;
+			min-width: $sidebarMinWidth;
+			position: fixed;
+			top: 0;
+			width: $sidebarWidth;
+
+			.profile_picture {
+				background: url("https://www.gravatar.com/avatar/49dbfd4eff4d399330de2bc4b03cb334?s=#{$avatarSizeDesktop}");
+				position: relative;
+				width: $avatarSizeDesktop;
+				height: $avatarSizeDesktop;
+				margin: 0 auto;
+			}
+
+			header {
+				padding-top: 30px;
+				min-width: 100%;
+				text-align: center;
+			}
+		}
+
+		.content {
+			background-color: $contentBackground;
+			width: auto;
+
+			.wrapper {
+				padding: 30px 30px 0 $sidebarWidth+50px;				
+			}
+
+			article {
+				.post {
+					ul {
+						margin-left: 20px;
+					}
+				}
+			}
+		}
+
+		&> footer {
+			color: white;
+			bottom: 10px;
+			left: 0;
+			min-width: $sidebarMinWidth;
+			position: fixed;
+			text-align: center;
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+			width: $sidebarWidth;
+			z-index: 110;
+		}
+	}
+}
+ 
+ 
+/* From portrail tablet and down */
+@media (max-width: 979px) {
+	.sidebar {
+		box-shadow: 0 2px 10px black;
+		height: auto;
+	}
+
+	header {
+		padding: 10px;
+		text-align: right;
+	}
+
+	.content {
+		.wrapper {
+			padding: 0 20px;
+		}
+
+		article:first-child {
+			padding-top: 20px;
+		}
+	}
+}
+
+/* Portrait tablet to desktop*/
+@media (min-width: 767px) and (max-width: 979px) {
+	.sidebar, .content {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	header {
+		.profile_picture {
+			background: url("https://www.gravatar.com/avatar/49dbfd4eff4d399330de2bc4b03cb334?s=#{$avatarSizeTablet}");
+			width: $avatarSizeTablet;
+			height: $avatarSizeTablet;
+			float: left;
+			//margin-top: $avatarSizeMobile/9;
+		}
+
+		.slogan {
+			position: absolute;
+			top: 8px;
+			left: $avatarSizeTablet + 15px;
+			float: left;
+			text-align: left;
+			padding-left: 5px;
+			vertical-align: top;
+		}
+	}
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) { 
+	.hide-mobile { display: none; }
+
+	.profile_picture {
+		background: url("https://www.gravatar.com/avatar/49dbfd4eff4d399330de2bc4b03cb334?s=#{$avatarSizeMobile}");
+		width: $avatarSizeMobile;
+		height: $avatarSizeMobile;
+		float: left;
+		//margin-top: $avatarSizeMobile/9;
+	}
+
+	body {
+		font-size: 12px;
+	}
+
+	hr {
+		width: 6*20px;
+	}
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
+}
+
+/* =Typography
+-----------------------------------------------------------------------------*/
+body {
+	margin: 0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+header {
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+}
+	
+/* =Links
+-----------------------------------------------------------------------------*/
+a {
+	color: $color6;
+	text-decoration: none;
+
+	&:hover { 
+		color: $color9;
+	}
+}
+
+.sidebar {
+	a {
+		color: $color10;
+	}
+	a h1 {
+		color: white;
+	}
+}
+
+/* =Layout
+-----------------------------------------------------------------------------*/
+.all {
+	width: 100%;
+
+	.sidebar {
+		@include gradient($color5, $color1);
+		color: white;
+		z-index: 100;
+
+		header {
+			h1 {
+				font-size: 2em;
+			}
+		}
+	}
+
+	.content {
+		background: $contentBackground;
+		z-index: 50;
+
+		article {
+			margin-bottom: 20px;
+
+			.title {
+				text-shadow: 2px 2px 1px rgba(100, 100, 100, 1);
+				font-size: 1.6em;
+				line-height: 1.4em;
+			}
+
+			.info {
+				padding-top: 5px; 
+			}
+
+			.post {
+				font-size: 1em;
+				margin-top: 10px;
+				text-align: justify;
+
+				img {
+					max-width: 100% !important;
+				}
+			}
+		}
+	}
+}
+
+/* =Header
+-----------------------------------------------------------------------------*/
+ 
+
+/* =Nav
+-----------------------------------------------------------------------------*/
+
+
+/* =Misc
+-----------------------------------------------------------------------------*/
+.align-center {
+	text-align: center;
+}
+
+.align-right {
+	text-align: right;
+}
+
+.go-up {
+	bottom: 10px;
+	position: fixed;
+	right: 20px;
+	font-size: 2em;
+}
+
+hr {
+	background: $color6 image-url("grid.png");
+	border: 0;
+	height: 6px;
+	margin: 20px auto;
+
+	&.double { height: 12px; }
+	&.triple { height: 18px; }
+}
+
+.slogan {
+	padding: 10px 0;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Rambla', sans-serif;
+	margin: 0;
+}
+
+.social {
+	margin-top: 10px;
+	a {
+		color: inherit;
+	}
+}
+
+.links {
+	margin-top: 10px;
+}
+
+.post_paginator {
+	padding: 20px 0;
+	font-size: 15px;
+}
+
+.clear-both {
+	clear: both;
+}
+
+.pagination {
+	padding: 20px 0;
+	text-align: center;
+}
+
+.button {
+	display: inline-block; 
+	width: $socialButtonSize;
+	height: $socialButtonSize;
+	line-height: $socialButtonSize;
+	border-radius: 8px;
+	text-align: center;
+	text-shadow: 0 0 0 rgba(0, 0, 0, 1) !important;
+	font-size: 20px;
+
+	&.auto { width: auto; height: auto; padding: 0 6px; }
+
+	&.bitbucket { background-color: #205081; }
+	&.creativecommons { background-color: #000; }
+	&.email { background-color: #f0f0eb; color: #312c2a; }
+	&.facebook { background-color: #4863ae;}
+	&.linkedin { background-color: #0083A8; }
+	&.lastfm { background-color: #dc1a23; }
+	&.github { background-color: #fbfbfb; color: #050505; }
+	&.rss { background-color: #ff7f25; }
+	&.twitter { background-color: #46c0fb; }
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.no-border {
+	border: 0;
+}
+
+/* =Tables
+Thanks: https://gist.github.com/andyferra/2554919
+-----------------------------------------------------------------------------*/
+* + table {
+	padding: 0; 
+	margin: 0 auto;
+ 	tr {
+		border-top: 1px solid #cccccc;
+		background-color: white;
+		margin: 0;
+		padding: 0; 
+		&:nth-child(2n) {
+  			background-color: #f8f8f8; 
+  		}
+  		th {
+		  font-weight: bold;
+		  border: 1px solid #cccccc;
+		  text-align: left;
+		  margin: 0;
+		  padding: 6px 13px; 
+		}
+		td {
+		  border: 1px solid #cccccc;
+		  text-align: left;
+		  margin: 0;
+		  padding: 6px 13px; 
+		}
+	}
+}
+table tr th :first-child, table tr td :first-child {
+  margin-top: 0; 
+}
+table tr th :last-child, table tr td :last-child {
+  margin-bottom: 0; 
+}
+
+
+/* =Footer
+-----------------------------------------------------------------------------*/
